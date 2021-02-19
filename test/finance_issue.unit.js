@@ -123,8 +123,7 @@ describe('finance_issue.js', function () {
             assert.ok(iban.substring(9, 10).match(/^\d{1}$/), 'National Digit:' + iban.substring(9, 10) + ' must contains only digits in PK IBAN ' + ibanFormated);
             assert.ok(iban.substring(10, 26).match(/^\d{16}$/), 'Account Code:' + iban.substring(10, 26) + ' must contains only digits in PK IBAN ' + ibanFormated);
 
-
-            assert.ok(Number.isFinite(iban.substring(2, 26)), 'No character after TR ' + ibanFormated);
+            assert.ok(iban.substring(2, 26).match(/^\d{24}$/), 'No character after TR ' + ibanFormated);
 
             assert.equal(ibanLib.mod97(ibanLib.toDigitString(bban)), 1, "the result should be equal to 1");
         });
